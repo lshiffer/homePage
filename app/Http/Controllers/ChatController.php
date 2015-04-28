@@ -29,7 +29,7 @@ class ChatController extends Controller {
 		$publish = json_encode(array('name' => User::where('ID', $request->input('user_id'))->get()[0]->name,
 					'message' => $request->input('message')
 			));
-			var_dump($publish);
+
 		// Publush the event on channel 'channelChat'
 		$redis->publish('channelChat', $publish); 
 
