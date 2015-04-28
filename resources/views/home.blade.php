@@ -51,19 +51,23 @@
 		<div id="rightPanel">
 
 			<div id="reddit">
-				<div class="panel panel-default">
-					<div class="panel-heading">Reddit</div>
-				</div>
 
-				<div id="redditHTML"> </div>
 			</div>
 
 			<div id="settings">
-				<div class="panel panel-default">
+				<div id="settingsTitle" class="panel panel-default">
 					<div class="panel-heading">Settings</div>
 				</div>
 
-				<div id="settingsHTML"> </div>
+				<div id="settingsHTML">
+					<form id="photoForm" action="uploadPhoto" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+						    Select image to upload:
+						<input type="file" name="fileToUpload" id="fileToUpload">
+						<input type="submit" value="Upload Image" name="submit">
+					</form>
+
+				</div>
 			</div>
 
 		</div>
@@ -77,6 +81,8 @@
 		$(document).ready(function() {
 
 			$('#chatBoxField').val("");
+
+			updateReddit('programming');
 
 			var chatTemplate = Handlebars.compile($('#chatTemplate').html());
 
@@ -154,9 +160,55 @@
 
 
 	<script type="text/javascript">
+			$('#photoForm').submit(function() { 
+				var options = { 
+			        //target:        '#output2',   // target element(s) to be updated with server response 
+			        //beforeSubmit:  showRequest,  // pre-submit callback 
+			        success:       uploadedGood,  // post-submit callback 
+			 
+			        // other available options: 
+			       // url:       "sendChatMessage"         // override for form's 'action' attribute 
+			        type:      'post'        // 'get' or 'post', override for form's 'method' attribute 
+			        //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
+			        //clearForm: true        // clear all form fields after successful submit 
+			        //resetForm: true        // reset the form after successful submit 
+			 
+			        // $.ajax options can be used here too, for example: 
+			        //timeout:   3000 
+			    }; 
+
+		        // inside event callbacks 'this' is the DOM element so we first 
+		        // wrap it in a jQuery object and then invoke ajaxSubmit 
+		       	 $(this).ajaxSubmit(options); 
+
+		        // !!! Important !!! 
+		        // always return false to prevent standard browser submit and page navigation 
+		        return false; 
+    		}); 
+
+		function uploadedGood(data) {
+			console.log("H"+data);
+		}
+
 		function openSettings() {
 			$('#settings').toggle()
 		}
+
+	</script>
+
+	<script>
+		function updateReddit(subReddit) {
+			$.get("/reddit/"+subReddit, function(result) {
+				$('#reddit').html(result);
+			});
+		}
+
+		function openStory(url) {
+			// $.get("/reddit/getStory/"+url, function(result) {
+			// 	console.log(result);
+			// });
+		}
+
 	</script>
 
 

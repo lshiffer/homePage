@@ -17,13 +17,19 @@ class RedditController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($subReddit)
 	{
 		//return Reddit::getTopStories();
 
 		return view('reddit', [
-			'redditData' => Reddit::getTopStories()
+			'redditData' => Reddit::getTopStories($subReddit)->data->children
 		]);
+	}
+
+	public function getStory($data)
+	{
+		$rtObject = file_get_contents($data);
+		return $rtObject;
 	}
 
 	/**

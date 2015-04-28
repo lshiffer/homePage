@@ -21,9 +21,12 @@ Route::get('home', 'HomeController@index');
 
 Route::post('sendChatMessage', 'ChatController@newMessage');
 
-Route::get('reddit', 'RedditController@index');
+Route::get('reddit/{subReddit}', 'RedditController@index');
+Route::get('reddit/getStory/{id}', 'RedditController@getStory');
 
 Route::get('userProfile/{id}', 'ProfileController@userProfile');
+
+Route::post('uploadPhoto', 'ProfileController@updatePhoto');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

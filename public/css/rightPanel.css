@@ -2,7 +2,34 @@
 #rightPanel {
 	float: left;
 	width: 300px;
-	height: 400px;
-
+	height: 390px;
+	margin-left: 5px;
+	padding: 5px;
+	position: relative;
+	
 	background-color: yellow;
+
+	overflow-y: none;
+}
+
+#reddit {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+#redditTitle {
+	z-index: 5;
+	position: relative;
+}
+
+#redditHTML {
+	width: 100%;
+	height: 340px;
+	overflow-y: scroll;
+	position: absolute;
+	margin-top: -20px;
+	z-index: 1;
+
+	font-size: 10pt;
 }

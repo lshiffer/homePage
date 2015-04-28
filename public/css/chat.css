@@ -1,8 +1,9 @@
 
 #chatContainer {
 	height: 350px;
-	width: 530px;
+	width: 522px;
 	float: left;
+	margin-left: -45px;
 }
 
 #chatBox {
@@ -11,11 +12,11 @@
 	background: 333333;
 	border: 2px inset black;
 	padding: 5px;
-	overflow-y: auto;
+	overflow-y: scroll;
 }
 
 #chatBoxField {
-	width: 470px;
+	width: 468px;
 	padding: 5px;
 }
 
@@ -26,7 +27,7 @@
 }
 
 .chatMessage {
-	width: 400px;
+	width: 390px;
 	float: left;
 	padding: 5px;
 	overflow-x: hidden;
