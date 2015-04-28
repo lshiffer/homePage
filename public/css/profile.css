@@ -1,0 +1,20 @@
+#outterContainer {
+	width: 100%;
+}
+
+#rowContainer {
+	margin: auto;
+}
+
+#profileContainer {
+	width: 250px;
+	height: 350px;
+	float: left;
+}
+
+#profile {
+	width: 200px;
+	height: 385px;
+
+	background-color: gray;
+}

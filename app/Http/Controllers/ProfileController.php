@@ -4,39 +4,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use LRedis;
-use App\User;
-use View;
 
-class ChatController extends Controller {
+use App\Models\UserQuery;
+
+class ProfileController extends Controller {
 
 	public function __construct()
 	{
 		$this->middleware('auth');
-	}
-
-	public function newMessage(Request $request)
-	{
-		//dd(User::find($request->input('user_id'))->get()->name);
-		$redis = LRedis::connection();
-		// $view = view('chatLine', [
-		// 		'message' => $request->input('message')
-		// 	]);
-
-		//return User::where('ID', $request->input('user_id'))->get()[0]->name;
-
-		$user = User::where('ID', $request->input('user_id'));
-
-		// var_dump($view->render());
-		$publish = json_encode(array('name' => $user->get()[0]->name,
-					'id' => $user->get()[0]->id,
-					'message' => $request->input('message')
-			));
-
-		// Publush the event on channel 'channelChat'
-		$redis->publish('channelChat', $publish); 
-
-		return "success";
 	}
 
 	/**
@@ -44,9 +19,13 @@ class ChatController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function userProfile($id)
 	{
-		//
+		$data = UserQuery::getProfileData($id);
+
+		return view('profile', [
+			'profileData' => $data
+		]);
 	}
 
 	/**

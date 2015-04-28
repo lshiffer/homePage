@@ -1,0 +1,34 @@
+
+#chatContainer {
+	height: 350px;
+	width: 530px;
+	float: left;
+}
+
+#chatBox {
+	height: 315px;
+	width: 520px;
+	background: 333333;
+	border: 2px inset black;
+	padding: 5px;
+	overflow-y: auto;
+}
+
+#chatBoxField {
+	width: 470px;
+	padding: 5px;
+}
+
+.chatName {
+	width: 100px;
+	float: left;
+	padding: 5px;
+}
+
+.chatMessage {
+	width: 400px;
+	float: left;
+	padding: 5px;
+	overflow-x: hidden;
+	border: 1px inset gray;
+}

@@ -21,6 +21,10 @@ Route::get('home', 'HomeController@index');
 
 Route::post('sendChatMessage', 'ChatController@newMessage');
 
+Route::get('reddit', 'RedditController@index');
+
+Route::get('userProfile/{id}', 'ProfileController@userProfile');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

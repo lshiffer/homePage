@@ -1,0 +1,11 @@
+
+#settings {
+	width: 300px;
+	height: 400px;
+	background-color: orange;
+	z-index: 10;
+
+	float: right;
+
+	display: none;
+}

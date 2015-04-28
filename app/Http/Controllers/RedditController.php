@@ -4,40 +4,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use LRedis;
-use App\User;
-use View;
 
-class ChatController extends Controller {
+use \App\Services\APIs\Reddit;
 
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
 
-	public function newMessage(Request $request)
-	{
-		//dd(User::find($request->input('user_id'))->get()->name);
-		$redis = LRedis::connection();
-		// $view = view('chatLine', [
-		// 		'message' => $request->input('message')
-		// 	]);
+class RedditController extends Controller {
 
-		//return User::where('ID', $request->input('user_id'))->get()[0]->name;
-
-		$user = User::where('ID', $request->input('user_id'));
-
-		// var_dump($view->render());
-		$publish = json_encode(array('name' => $user->get()[0]->name,
-					'id' => $user->get()[0]->id,
-					'message' => $request->input('message')
-			));
-
-		// Publush the event on channel 'channelChat'
-		$redis->publish('channelChat', $publish); 
-
-		return "success";
-	}
+	//$reddit_key = getenv('REDDIT_KEY');
 
 	/**
 	 * Display a listing of the resource.
@@ -46,7 +19,11 @@ class ChatController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		//return Reddit::getTopStories();
+
+		return view('reddit', [
+			'redditData' => Reddit::getTopStories()
+		]);
 	}
 
 	/**
