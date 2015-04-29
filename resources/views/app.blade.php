@@ -45,6 +45,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
+								<li><a onClick="openProfile({{Auth::User()->id}}); return false" href="{{ url('') }}">My Profile</a></li>
 								<li><a onClick="openSettings(); return false" href="{{ url('') }}">Settings</a></li>
 								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 							</ul>

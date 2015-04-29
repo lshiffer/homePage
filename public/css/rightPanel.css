@@ -6,8 +6,7 @@
 	margin-left: 5px;
 	padding: 5px;
 	position: relative;
-
-	border: 1px inset gray;
+	margin-top: -4px;
 
 	overflow-y: none;
 }

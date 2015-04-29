@@ -31,7 +31,9 @@
 				<div class="panel-heading">Chat</div>
 
 				<div id="chatBox" class="panel-body">
-					
+					@foreach($messages as $message)
+						<div class="chatName" value="{{ $message['relations']['user']['attributes']['id'] }}"> {{ $message['relations']['user']['attributes']['name'] }}  </div> <div class="chatMessage"> {{ $message['attributes']['message'] }} </div> <br/>
+					@endforeach	
 				</div>
 
 				<script type="text/handlebars" id="chatTemplate">
@@ -78,7 +80,6 @@
 
 	<script>
 
-
 		$(document).ready(function() {
 
 			$('#chatBoxField').val("");
@@ -86,6 +87,10 @@
 			updateReddit('programming');
 
 			var chatTemplate = Handlebars.compile($('#chatTemplate').html());
+
+			$('.chatName').click(function() {
+					openProfile(this.getAttribute("value"));
+				});
 
 			/*
 				'domain'
@@ -101,7 +106,7 @@
 			socket.on('channelChat', function(data) {
 				console.log(JSON.parse(data));
 				html = chatTemplate(JSON.parse(data))
-				$("#chatBox").append(html);
+				$("#chatBox").prepend(html);
 
 				$('.chatName').click(function() {
 					openProfile(this.getAttribute("value"));

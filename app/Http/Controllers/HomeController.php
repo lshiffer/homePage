@@ -34,7 +34,7 @@ class HomeController extends Controller {
 	{
 		$date = date("Y-m-d H:i:s", strtotime(date('now')) - 3600);
 		return view('home', [
-				'messages' => Message::where('created_at', '>', $date)->with('user')->get()
+				'messages' => Message::where('messages.created_at', '>', $date)->with('user')->orderBy('created_at', 'DESC')->get()
 			]);
 	}
 
