@@ -20,10 +20,17 @@
 	padding: 5px;
 }
 
+.chatTime {
+	font-size: 7pt;
+	float: left;
+}
+
 .chatName {
 	width: 100px;
 	float: left;
 	padding: 5px;
+	float: left;
+	cursor: pointer;
 }
 
 .chatMessage {

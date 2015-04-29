@@ -32,7 +32,7 @@
 
 				<div id="chatBox" class="panel-body">
 					@foreach($messages as $message)
-						<div class="chatName" value="{{ $message['relations']['user']['attributes']['id'] }}"> {{ $message['relations']['user']['attributes']['name'] }}  </div> <div class="chatMessage"> {{ $message['attributes']['message'] }} </div> <br/>
+						<div class="chatName" value="{{ $message['relations']['user']['attributes']['id'] }}"> {{ $message['relations']['user']['attributes']['name'] }} </div> <div class="chatTime">{{ date('H:i:s', strtotime($message['attributes']['created_at'])) }} </div> <div class="chatMessage"> {{ $message['attributes']['message'] }} </div> <br/>
 					@endforeach	
 				</div>
 
