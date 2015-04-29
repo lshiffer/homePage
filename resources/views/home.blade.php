@@ -60,11 +60,11 @@
 				</div>
 
 				<div id="settingsHTML">
-					<form id="photoForm" action="uploadPhoto" method="post" enctype="multipart/form-data">
+					<form files="true" id="photoForm" action="uploadPhoto" method="post">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						    Select image to upload:
 						<input type="file" name="fileToUpload" id="fileToUpload">
-						<input type="submit" value="Upload Image" name="submit">
+						<input id="uploadButton" type="submit" value="Upload Image" name="submit">
 					</form>
 
 				</div>
@@ -77,6 +77,7 @@
 </div>
 
 	<script>
+
 
 		$(document).ready(function() {
 
@@ -145,14 +146,14 @@
 	</script>
 
 	<script>
+		function openProfile() {
+				$.get("/userProfile/"+{{ Auth::user()->id }}, function(result) {
+					$('#profileHTML').html(result);
+				});
+			}
+
 		function openProfile(userID) {
 			$.get("/userProfile/"+userID, function(result) {
-				$('#profileHTML').html(result);
-			});
-		}
-
-		function openProfile() {
-			$.get("/userProfile/"+{{ Auth::user()->id }}, function(result) {
 				$('#profileHTML').html(result);
 			});
 		}
@@ -160,21 +161,29 @@
 
 
 	<script type="text/javascript">
-			$('#photoForm').submit(function() { 
+			$('#photoForm').submit(function(event) { 
+				event.preventDefault();
+
+			//	var formData = new FormData($('#photoForm'));
+				//console.log(formData);
+
 				var options = { 
 			        //target:        '#output2',   // target element(s) to be updated with server response 
-			        //beforeSubmit:  showRequest,  // pre-submit callback 
+			        beforeSubmit:  showRequest,  // pre-submit callback 
 			        success:       uploadedGood,  // post-submit callback 
-			 
+			 		//contentType: false,
+			 		//processData: false,
+			 		//iframe: true,
+			 		//data: 'uploadButton',
 			        // other available options: 
-			       // url:       "sendChatMessage"         // override for form's 'action' attribute 
-			        type:      'post'        // 'get' or 'post', override for form's 'method' attribute 
-			        //dataType:  null        // 'xml', 'script', or 'json' (expected server response type) 
+			    //    url:       "uploadPhoto",         // override for form's 'action' attribute 
+			    //    type:      'POST',        // 'get' or 'post', override for form's 'method' attribute 
+			       // dataType:  'multipart/form-data'        // 'xml', 'script', or 'json' (expected server response type) 
 			        //clearForm: true        // clear all form fields after successful submit 
 			        //resetForm: true        // reset the form after successful submit 
 			 
 			        // $.ajax options can be used here too, for example: 
-			        //timeout:   3000 
+			        timeout:   3000 
 			    }; 
 
 		        // inside event callbacks 'this' is the DOM element so we first 
@@ -187,11 +196,15 @@
     		}); 
 
 		function uploadedGood(data) {
-			console.log("H"+data);
+			console.log("H"+ data);
 		}
 
 		function openSettings() {
 			$('#settings').toggle()
+		}
+
+		function showRequest(data) {
+			console.log(data);
 		}
 
 	</script>

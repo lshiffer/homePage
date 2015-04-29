@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use LRedis;
 use App\User;
 use View;
+use App\Models\Message;
 
 class ChatController extends Controller {
 
@@ -17,23 +18,20 @@ class ChatController extends Controller {
 
 	public function newMessage(Request $request)
 	{
-		//dd(User::find($request->input('user_id'))->get()->name);
 		$redis = LRedis::connection();
-		// $view = view('chatLine', [
-		// 		'message' => $request->input('message')
-		// 	]);
-
-		//return User::where('ID', $request->input('user_id'))->get()[0]->name;
 
 		$user = User::where('ID', $request->input('user_id'));
 
-		// var_dump($view->render());
+		$message = new Message;
+		$message->message = $request->input('message');
+		$message->user_id = $request->input('user_id');
+		$message->save();
+
 		$publish = json_encode(array('name' => $user->get()[0]->name,
 					'id' => $user->get()[0]->id,
 					'message' => $request->input('message')
 			));
 
-		// Publush the event on channel 'channelChat'
 		$redis->publish('channelChat', $publish); 
 
 		return "success";

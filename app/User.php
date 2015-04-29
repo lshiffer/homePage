@@ -36,4 +36,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		$this->hasOne('Profile');
 	}
 
+	public function message()
+	{
+		$this->hasMany('Message');
+	}
+
 }

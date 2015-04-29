@@ -6,8 +6,8 @@
 	margin-left: 5px;
 	padding: 5px;
 	position: relative;
-	
-	background-color: yellow;
+
+	border: 1px inset gray;
 
 	overflow-y: none;
 }

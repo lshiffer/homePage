@@ -32,40 +32,31 @@ class ProfileController extends Controller {
 	public function updatePhoto(Request $request)
 	{
 		$target_dir = public_path('/images/profileImages/');
-		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 
-		$target_dir . basename($_FILES["fileToUpload"]["name"]);
-		$uploadOk = 1;
-		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-		$target_file = $target_dir . \Auth::User()->id . '.' . $imageFileType;
+		$file = array('image' => \Input::file('fileToUpload'));
+		$rules = array('image' => 'image');
+		// $validator = \Validator::make($file, $rules);
 
-		var_dump(getimagesize($_FILES["fileToUpload"]["tmp_name"]));
+		// if ($validator->fails())
+	 //        return Redirect::to('/')->withErrors();
 
-		// Check if image file is a actual image or fake image
-		if(isset($request["submit"])) {
-		    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-		    if($check !== false) {
-		        $uploadOk = 1;
-		    } else {
-		        $uploadOk = 0;
+
+		// if (\Input::file('fileToUpload')->isValid()) {
+			$extension = \Input::file('fileToUpload')->getClientOriginalExtension();
+			$fileName = \Auth::User()->id . '.' . $extension;
+			\Input::file('fileToUpload')->move($target_dir, $fileName);
+
+			$profile = Profile::where('user_id', \Auth::User()->id)->get();
+
+		    if(sizeof($profile)<1){
+		        $profile = new Profile;
+		        $profile->description = "I'm new here...";
+		        $profile->user_id=\Auth::User()->id;
 		    }
 
-		    $uploadOk=3;
-
-		    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-		        $profile = Profile::where('user_id', \Auth::User()->id)->first();
-		        if(sizeof($profile)<1){
-		        	$profile = new Profile;
-		        	$profile->user_id=\Auth::User()->id;
-		        }
-
-		        $profile->profileImagePath = 'images/profileImages/' . \Auth::User()->id . '.' . $imageFileType;
-		        $profile->save();
-	    	}	    
-
-	    return $uploadOK;
-		}
-		return 5;
+		    $profile->profileImagePath = 'images/profileImages/' . \Auth::User()->id . '.' . $extension;
+		    $profile->save();
+	    //}	  
 	}
 
 	/**

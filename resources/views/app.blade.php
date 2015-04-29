@@ -30,12 +30,11 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Laravel</a>
+				<a class="navbar-brand" href="#">Just Us</a>
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a onClick="openProfile(); return false;" href="{{ url('/myProfile') }}">Profile</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
