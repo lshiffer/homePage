@@ -152,13 +152,13 @@
 
 	<script>
 		function openProfile() {
-				$.get("/userProfile/"+{{ Auth::user()->id }}, function(result) {
+				$.get("userProfile/"+{{ Auth::user()->id }}, function(result) {
 					$('#profileHTML').html(result);
 				});
 			}
 
 		function openProfile(userID) {
-			$.get("/userProfile/"+userID, function(result) {
+			$.get("userProfile/"+userID, function(result) {
 				$('#profileHTML').html(result);
 			});
 		}
