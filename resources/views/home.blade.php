@@ -100,7 +100,7 @@
 
 				Set listener for the event 'eventMessage'
 			*/	
-			domain = "localhost";
+			domain = "lukeshiffer.com";
 			var socket = io.connect('http://'+domain+':8890');
 
 			socket.on('channelChat', function(data) {
@@ -216,7 +216,7 @@
 
 	<script>
 		function updateReddit(subReddit) {
-			$.get("/reddit/"+subReddit, function(result) {
+			$.get("reddit/"+subReddit, function(result) {
 				$('#reddit').html(result);
 			});
 		}
