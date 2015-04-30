@@ -37,7 +37,7 @@
 				</div>
 
 				<script type="text/handlebars" id="chatTemplate">
-					<div class="chatName" value="@{{id}}"> @{{name}} </div> <div class="chatMessage"> @{{message}} </div> <br/>
+					<div class="chatName" value="@{{id}}"> @{{name}} </div> <div class="chatTime"> @{{time}} </div> <div class="chatMessage"> @{{message}} </div> <br/>
 				</script>
 
 				<form name="chatBoxForm" id="chatBoxForm" action="" method="POST">

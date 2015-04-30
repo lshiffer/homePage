@@ -27,8 +27,11 @@ class ChatController extends Controller {
 		$message->user_id = $request->input('user_id');
 		$message->save();
 
+		$time = date('H:i:s', strtotime($message->created_at));
+
 		$publish = json_encode(array('name' => $user->get()[0]->name,
 					'id' => $user->get()[0]->id,
+					'time' => $time,
 					'message' => $request->input('message')
 			));
 
