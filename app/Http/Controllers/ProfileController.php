@@ -31,7 +31,8 @@ class ProfileController extends Controller {
 
 	public function updatePhoto(Request $request)
 	{
-		$target_dir = public_path('/images/profileImages/');
+		$target_dir = public_path('images/profileImages/');
+		//return($target_dir);
 
 		$file = array('image' => \Input::file('fileToUpload'));
 		$rules = array('image' => 'image');
@@ -46,10 +47,10 @@ class ProfileController extends Controller {
 			$fileName = \Auth::User()->id . '.' . $extension;
 			\Input::file('fileToUpload')->move($target_dir, $fileName);
 
-			$profile = Profile::where('user_id', \Auth::User()->id)->get();
+			$profile = Profile::where('user_id', \Auth::User()->id)->first();
 
 		    if(sizeof($profile)<1){
-		        $profile = new Profile;
+		        $profile = new Profile();
 		        $profile->description = "I'm new here...";
 		        $profile->user_id=\Auth::User()->id;
 		    }
