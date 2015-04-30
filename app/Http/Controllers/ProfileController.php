@@ -45,6 +45,8 @@ class ProfileController extends Controller {
 		// if (\Input::file('fileToUpload')->isValid()) {
 			$extension = \Input::file('fileToUpload')->getClientOriginalExtension();
 			$fileName = \Auth::User()->id . '.' . $extension;
+
+			\File::delete($target_dir . $fileName);
 			\Input::file('fileToUpload')->move($target_dir, $fileName);
 
 			$profile = Profile::where('user_id', \Auth::User()->id)->first();
