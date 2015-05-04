@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use App\Models\UserQuery;
 use App\Models\Profile;
 
+use Input;
+use File;
+use Auth;
+
 class ProfileController extends Controller {
 
 	public function __construct()
@@ -15,11 +19,7 @@ class ProfileController extends Controller {
 		$this->middleware('auth');
 	}
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+
 	public function userProfile($id)
 	{
 		$data = UserQuery::getProfileData($id);
@@ -32,9 +32,8 @@ class ProfileController extends Controller {
 	public function updatePhoto(Request $request)
 	{
 		$target_dir = public_path('images/profileImages/');
-		//return($target_dir);
 
-		$file = array('image' => \Input::file('fileToUpload'));
+		$file = array('image' => Input::file('fileToUpload'));
 		$rules = array('image' => 'image');
 		// $validator = \Validator::make($file, $rules);
 
@@ -43,21 +42,21 @@ class ProfileController extends Controller {
 
 
 		// if (\Input::file('fileToUpload')->isValid()) {
-			$extension = \Input::file('fileToUpload')->getClientOriginalExtension();
-			$fileName = \Auth::User()->id . '.' . $extension;
+			$extension = Input::file('fileToUpload')->getClientOriginalExtension();
+			$fileName = Auth::User()->id . '.' . $extension;
 
-			\File::delete($target_dir . $fileName);
-			\Input::file('fileToUpload')->move($target_dir, $fileName);
+			File::delete($target_dir . $fileName);
+			Input::file('fileToUpload')->move($target_dir, $fileName);
 
-			$profile = Profile::where('user_id', \Auth::User()->id)->first();
+			$profile = Profile::where('user_id', Auth::User()->id)->first();
 
 		    if(sizeof($profile)<1){
 		        $profile = new Profile();
 		        $profile->description = "I'm new here...";
-		        $profile->user_id=\Auth::User()->id;
+		        $profile->user_id=Auth::User()->id;
 		    }
 
-		    $profile->profileImagePath = 'images/profileImages/' . \Auth::User()->id . '.' . $extension;
+		    $profile->profileImagePath = 'images/profileImages/' . Auth::User()->id . '.' . $extension;
 		    $profile->save();
 	    //}	  
 	}
