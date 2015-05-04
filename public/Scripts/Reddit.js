@@ -5,7 +5,7 @@ function Reddit() {
 
 Reddit.prototype.update = function() {
 	$.get("/reddit/"+this.subReddit, function(result) {
-				$('#reddit').html(result);
+				$('#redditHTML').html(result);
 			});
 }
 

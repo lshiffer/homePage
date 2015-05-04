@@ -67,6 +67,19 @@
 		<div id="rightPanel">
 
 			<div id="reddit">
+				<div id="redditHeader" class="panel panel-default">
+					<div id="redditTitle" class="panel-heading"> 
+						<select id="titleSelect">
+							@foreach($categories as $category)
+								<option> {{ $category }} </option>
+							@endforeach
+						</select>
+					</div>
+				</div>
+
+				<div id="redditHTML">
+
+				</div>
 
 			</div>
 
