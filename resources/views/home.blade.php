@@ -19,10 +19,9 @@
 
 		<div id="profileContainer">
 			<div id="profile">
-				<div class="panel panel-default">
-					<div class="panel-heading">Profile</div>
+				<div id="profileHTML" class="panel panel-default">
 
-					<div id="profileHTML"> {!! $profile !!} </div>
+					{!! $profile !!} 
 					
 					<script type="text/handlebars" id="profileTemplate">
 						//<div class="profileName" value="@{{id}}"> @{{name}} </div> <div class="profileImage"> @{{message}} </div> <br/>
