@@ -22,13 +22,21 @@ Reddit.prototype.isCurrent = function(subReddit) {
 }
 
 Reddit.prototype.buttonsInit = function() {
-	$('.redditOption').click(function(event) { 
-		selected = event.target.attributes.value.value;
+	$('#redditSelect').change(function(event) { 
+		selected = event.target.value;
 		if (!reddit.isCurrent(selected)) {
 			reddit.setSubReddit(selected);
 			reddit.update();
 	    	$('#redditTitle').html($('#redditSelect option:selected').val());
 	    }
+	});
+
+	$('#redditSelect').mouseover(function(event) {
+		$('#redditHeaderDisplayInterior').css('border', '1px inset white');
+	});
+
+	$('#redditSelect').mouseout(function(event) {
+		$('#redditHeaderDisplayInterior').css('border', '1px outset white');
 	});
 }
 
