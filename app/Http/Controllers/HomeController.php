@@ -4,7 +4,7 @@ use App\Models\Message;
 
 class HomeController extends Controller {
 
-	private $categories = array("funny", "programming");
+	private $categories = array("funny", "programming", "WTF", "worldnews", "news", "AwfulCommercials","productivity");
 
 	/*
 	|--------------------------------------------------------------------------

@@ -68,13 +68,12 @@
 
 			<div id="reddit">
 				<div id="redditHeader" class="panel panel-default">
-					<div id="redditTitle" class="panel-heading"> 
-						<select id="titleSelect">
+					<div id="redditTitle" class="panel-heading"> </div>
+						<select id="redditSelect">
 							@foreach($categories as $category)
-								<option> {{ $category }} </option>
+								<option class="redditOption" value="{{$category}}"> {{ $category }} </option>
 							@endforeach
 						</select>
-					</div>
 				</div>
 
 				<div id="redditHTML">
