@@ -12,7 +12,7 @@ Reddit.prototype.setSubReddit = function(subReddit) {
 }
 
 Reddit.prototype.update = function() {
-	$.get("/reddit/"+this.subReddit, function(result) {
+	$.get("reddit/"+this.subReddit, function(result) {
 				$('#redditHTML').html(result);
 			});
 }

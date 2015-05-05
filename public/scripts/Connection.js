@@ -8,7 +8,7 @@ function Connection() {
 
 		Set listener for the event 'eventMessage'
 	*/	
-	this.domain = "lukeshiffer.com";
+	this.domain = "localhost";
 	this.socket = io.connect('http://'+this.domain+':8890');
 }
 
