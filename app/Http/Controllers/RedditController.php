@@ -7,15 +7,12 @@ use Illuminate\Http\Request;
 
 use \App\Services\APIs\Reddit;
 
-
 class RedditController extends Controller {
 
 	//$reddit_key = getenv('REDDIT_KEY');
 
 	public function index($subReddit)
 	{
-		//return Reddit::getTopStories();
-
 		return view('reddit', [
 			'redditData' => Reddit::getTopStories($subReddit)->data->children
 		]);

@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+use Validator;
+
 class Profile extends Model {
 
 	protected $fillable = ['profileImagePath', 'description', 'user_id'];
@@ -9,5 +11,12 @@ class Profile extends Model {
 	public function user()
 	{
 		return $this->belongsTo('App\User');
+	}
+
+	public static function validate($input)
+	{
+		return Validator::make($input, [
+				'user_id' => 'required'
+			]);
 	}
 }
