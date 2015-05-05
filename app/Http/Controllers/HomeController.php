@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Message;
+use App\Models\UserQuery;
 
 class HomeController extends Controller {
 
@@ -37,8 +38,11 @@ class HomeController extends Controller {
 		$date = date("Y-m-d H:i:s", strtotime(date("Y-m-d H:i:s")) - 3600*(6));
 		return view('home', [
 				'messages' => Message::where('messages.created_at', '>', $date)->with('user')->orderBy('created_at', 'DESC')->get(),
-				'categories' => $this->categories
-			]);
+				'categories' => $this->categories,
+				'profile' => view('profile', [
+						'profileData' => UserQuery::getProfileData(\Auth::User()->id)
+						])
+				]);
 	}
 
 }

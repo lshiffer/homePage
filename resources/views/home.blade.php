@@ -22,7 +22,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Profile</div>
 
-					<div id="profileHTML"></div>
+					<div id="profileHTML"> {!! $profile !!} </div>
 					
 					<script type="text/handlebars" id="profileTemplate">
 						//<div class="profileName" value="@{{id}}"> @{{name}} </div> <div class="profileImage"> @{{message}} </div> <br/>
@@ -68,7 +68,17 @@
 
 			<div id="reddit">
 				<div id="redditHeader" class="panel panel-default">
-					<div id="redditTitle" class="panel-heading"> </div>
+					<div id="redditHeaderDisplay" class="panel-heading"> 
+						<div id="redditHeaderDisplayInterior">
+							<div id="redditTitle">
+
+							</div>
+
+							<div id="downArrowButton">
+								{!! HTML::image('images/icons/downArrow.png', 'Expand', array( 'width' => 40, 'height' => 20 )) !!}
+							</div>
+						</div>
+					</div>
 						<select id="redditSelect">
 							@foreach($categories as $category)
 								<option class="redditOption" value="{{$category}}"> {{ $category }} </option>
