@@ -11,13 +11,34 @@
 	overflow-y: none;
 }
 
+#redditSelect {
+	width: 100%;
+	height: 41px;
+	opacity: 0;
+	font-size: 10pt;
+	font-weight: 0;
+	background-color: transparent;
+	z-index: 5;
+}
+
+#redditTitle {
+	width: 100%;
+	height: 41px;
+	z-index: 0;
+	position: absolute;
+}
+
+#redditOption {
+	font-size: 10pt;
+}
+
 #reddit {
 	width: 100%;
 	height: 100%;
 	position: relative;
 }
 
-#redditTitle {
+#redditHeader {
 	z-index: 5;
 	position: relative;
 }

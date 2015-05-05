@@ -12,11 +12,6 @@ class RedditController extends Controller {
 
 	//$reddit_key = getenv('REDDIT_KEY');
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index($subReddit)
 	{
 		//return Reddit::getTopStories();
