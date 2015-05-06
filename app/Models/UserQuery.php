@@ -1,6 +1,8 @@
 <?php namespace App\Models;
 
-	use DB;
+use DB;
+
+use Validator;
 
 class UserQuery {
 
@@ -9,5 +11,12 @@ class UserQuery {
 		$data = Profile::where('user_id', $userID)->with('user')->get();
 
 		return $data;
+	}
+
+	public static function validate($input)
+	{
+		return Validator::make($input, [
+				'user_id' => 'required'
+			]);
 	}
 }

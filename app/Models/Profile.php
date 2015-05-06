@@ -16,6 +16,8 @@ class Profile extends Model {
 	public static function validate($input)
 	{
 		return Validator::make($input, [
+				'profileImagePath' => 'required',
+				'description' => 'required',
 				'user_id' => 'required'
 			]);
 	}
