@@ -24,11 +24,11 @@ Run the node server in node folder.
 
 If local, run 'php artisan serve'. MUST HAVE php >= 5.5
 
-<h2>Current Issues</h2>
+<h2>Known Issues</h2>
 
-Scrollbars not properly resetting.
+Scrollbars not properly resetting.  A known fix but not of priority. 
 
-New user's default picture not loaded upon /first/ login.
+New user's default picture not loaded upon /first/ login.  Speculated to be a lapse in time between creating a profile and the page being loaded.  Reclicking the User's profile (user's name in chat OR profile under user's name in corner) shows the correct profile. 
 
 <h3>Considerations</h3>
 I've had experience in front-end development so I chose to focus more on the backend and communicating between the client and server.
