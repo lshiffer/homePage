@@ -2,7 +2,7 @@
 function Reddit() {
 	this.subReddit = "programming";
 
-	$('#redditTitle').html($('#redditSelect option:selected').val());
+	$('#redditTitle').html(this.subReddit);
 
 	this.buttonsInit();
 }

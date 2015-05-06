@@ -5,7 +5,7 @@ use App\Models\UserQuery;
 
 class HomeController extends Controller {
 
-	private $categories = array("funny", "programming", "WTF", "worldnews", "news", "AwfulCommercials","productivity");
+	private $categories = array("AwfulCommercials", "funny", "news", "programming", "productivity", "worldnews", "WTF");
 
 	/*
 	|--------------------------------------------------------------------------
