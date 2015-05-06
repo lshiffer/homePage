@@ -33,11 +33,11 @@ New user's default picture not loaded upon /first/ login.
 <h3>Considerations</h3>
 I've had experience in front-end development so I chose to focus more on the backend and communicating between the client and server.
 
-I felt Laravel provided a lot of features out of the box so I was intent on building around that framework.  The development environment was first setup on a CentOS server installing Laravel, Node, and Reddis to create a simple real-time communication app.  Once working, that environment was recreated locally to build the actual app.
+I felt Laravel provided a lot of features out of the box so I was intent on building around that framework.  The development environment was first setup on a CentOS server installing Laravel, Node, and Reddis to create a simple real-time communication app.  Once working, that environment was recreated locally to build the actual app.  Basically, Laravel acts as if a fort around the node server. 
 
-Many of Laravel's built-in features were used.  I was going to rebuild all of the html for the app but after seeing how Laravel's pre-built html is dynamic to resize for screens, I worked with it.  To get the correct desktop display, only the header is currently dynamic but should be simply enough to extend to the other divs being used for content. 
+Many of Laravel's built-in features were used.  I was going to rebuild all of the html for the app but after seeing how Laravel's pre-built html is dynamic to resize for screens, I worked with it.  To get the correct desktop display, only the header is currently dynamic but I do have plans to extend that dynamism back to the new content divs to ensure the site can be easily used through a mobile device.  
 
-Handlebars was used on the front for new chat messages to be easily compiled into html and inserted.
+Handlebars were used on the front for new chat messages to be easily compiled into html and inserted.
 
 User profiles are actually views of their own that are sent from the server to be inserted into the page. 
 
