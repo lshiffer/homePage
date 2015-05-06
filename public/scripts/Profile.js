@@ -1,7 +1,6 @@
 
 function Profile(userID) {
 	this.userID = userID;
-	console.log(userID);
 }
 
 Profile.prototype.open = function() {
@@ -11,6 +10,9 @@ Profile.prototype.open = function() {
 }
 
 Profile.prototype.open = function(id) {
+	if (id==null)
+		id=this.userID;
+	console.log("h")
 	$.get("userProfile/"+id, function(result) {
 					$('#profileHTML').html(result);
 				});

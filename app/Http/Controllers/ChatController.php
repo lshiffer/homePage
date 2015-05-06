@@ -18,26 +18,21 @@ class ChatController extends Controller {
 
 	public function newMessage(Request $request)
 	{
-		$redis = LRedis::connection();
+		// Save the message
+		$message = Message::saveMessage($request->input('message'), $request->input('user_id'));
 
-		$user = User::where('ID', $request->input('user_id'));
-
-		$message = new Message;
-		$message->message = $request->input('message');
-		$message->user_id = $request->input('user_id');
-		$message->save();
-
+		// Prepare for Publish
+		$user = User::where('id', $request->input('user_id'));
 		$time = date('H:i:s', strtotime($message->created_at));
-
-		$publish = json_encode(array('name' => $user->get()[0]->name,
+		$publish = json_encode(array(
+					'name' => $user->get()[0]->name,
 					'id' => $user->get()[0]->id,
 					'time' => $time,
 					'message' => $request->input('message')
-			));
+				));
 
-		$redis->publish('channelChat', $publish); 
-
-		return "success";
+		// Publish!
+		 LRedis::connection()->publish('channelChat', $publish); 
 	}
 
 	/**

@@ -3,12 +3,14 @@ function Settings() {
 	this.buttonsInit();
 }
 
-Settings.prototype.open = function() {
+Settings.prototype.toggle = function() {
 	$('#settings').toggle()
 }
 
 Settings.prototype.uploadedGood = function(data) {
-	console.log("H"+ data);
+	settings.toggle();
+	profile.open();
+	console.log(data);
 }
 
 Settings.prototype.showRequest = function(data) {
@@ -21,7 +23,7 @@ Settings.prototype.buttonsInit = function() {
 
 				var options = { 
 			        //target:        '#output2',   // target element(s) to be updated with server response 
-			        beforeSubmit:  settings.showRequest,  // pre-submit callback 
+			        //beforeSubmit:  settings.showRequest,  // pre-submit callback 
 			        success:       settings.uploadedGood,  // post-submit callback 
 			 		//contentType: false,
 			 		//processData: false,
@@ -31,8 +33,8 @@ Settings.prototype.buttonsInit = function() {
 			    //    url:       "uploadPhoto",         // override for form's 'action' attribute 
 			    //    type:      'POST',        // 'get' or 'post', override for form's 'method' attribute 
 			       // dataType:  'multipart/form-data'        // 'xml', 'script', or 'json' (expected server response type) 
-			        //clearForm: true        // clear all form fields after successful submit 
-			        //resetForm: true        // reset the form after successful submit 
+			        clearForm: true,        // clear all form fields after successful submit 
+			        resetForm: true,        // reset the form after successful submit 
 			 
 			        // $.ajax options can be used here too, for example: 
 			        timeout:   3000 

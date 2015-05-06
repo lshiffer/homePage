@@ -11,6 +11,7 @@ use App\Models\Profile;
 use Input;
 use File;
 use Auth;
+use Validator;
 
 class ProfileController extends Controller {
 
@@ -34,16 +35,18 @@ class ProfileController extends Controller {
 		$target_dir = public_path('images/profileImages/');
 
 		$file = array('image' => Input::file('fileToUpload'));
-		$rules = array('image' => 'image');
-		// $validator = \Validator::make($file, $rules);
+		// Validates only that image exists.
+		// Using image and/or mime (with various extensions) ALWAYS
+		$rules = array('image' => 'required');
+		$validator = Validator::make($file, $rules);
 
-		// if ($validator->fails())
-	 //        return Redirect::to('/')->withErrors();
+		if ($validator->fails())
+	        return "ERROR";
 
-
-		// if (\Input::file('fileToUpload')->isValid()) {
+		if (\Input::file('fileToUpload')->isValid()) {
 			$extension = Input::file('fileToUpload')->getClientOriginalExtension();
-			$fileName = Auth::User()->id . '.' . $extension;
+			$rand = rand();
+			$fileName = Auth::User()->id . $rand .'.' . $extension;
 
 			File::delete($target_dir . $fileName);
 			Input::file('fileToUpload')->move($target_dir, $fileName);
@@ -56,9 +59,10 @@ class ProfileController extends Controller {
 		        $profile->user_id=Auth::User()->id;
 		    }
 
-		    $profile->profileImagePath = 'images/profileImages/' . Auth::User()->id . '.' . $extension;
+		    $profile->profileImagePath = 'images/profileImages/' . Auth::User()->id . $rand . '.' . $extension;
 		    $profile->save();
-	    //}	  
+	    }	  
+	    return "success";
 	}
 
 	/**

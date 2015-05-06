@@ -1,16 +1,19 @@
 <?php namespace App\Models;
 
 use DB;
-
+use Auth;
 use Validator;
 
 class UserQuery {
 
 	public static function getProfileData($userID)
 	{
-		$data = Profile::where('user_id', $userID)->with('user')->get();
+		$profile = Profile::where('user_id', $userID)->with('user')->get();
 
-		return $data;
+		if (sizeof($profile)<1) 
+			$profile = Profile::makeNew();
+
+		return $profile;
 	}
 
 	public static function validate($input)
