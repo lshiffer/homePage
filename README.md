@@ -22,6 +22,10 @@ Install Redis and run the Redis server.
 
 Run the node server in node folder.
 
+Setup the Database information in .env
+
+public/scripts/Connection.js be sure this.domain is set to correct domain.  'localhost' if local, website if live. 
+
 If local, run 'php artisan serve'. MUST HAVE php >= 5.5
 
 <h2>Known Issues</h2>
@@ -52,3 +56,14 @@ Video Walktrough
 
 https://www.screenr.com/SmQN
 
+Pre-Made Account
+
+User:  dtang@usc.edu
+
+Password: laravel
+
+MySql
+
+User:  david
+
+Password:  laravel
