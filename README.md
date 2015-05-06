@@ -41,11 +41,13 @@ I felt Laravel provided a lot of features out of the box so I was intent on buil
 
 Many of Laravel's built-in features were used.  I was going to rebuild all of the html for the app but after seeing how Laravel's pre-built html is dynamic to resize for screens, I worked with it.  To get the correct desktop display, only the header is currently dynamic but I do have plans to extend that dynamism back to the new content divs to ensure the site can be easily used through a mobile device.  
 
-Handlebars were used on the front for new chat messages to be easily compiled into html and inserted.
+Handlebars are used on the front for new chat messages to be easily compiled into html and inserted.
 
 User profiles are actually views of their own that are sent from the server to be inserted into the page. 
 
 OAuth was also experimented with. I wanted to pull Facebook data but the data I needed would had required a Facebook review first, so that was scratched.  Reddit's public api was used to pull data and an attempt was made to use the authorized api as well.  Various OAuth plugins for Laravel was explored and most were pre-configured for use with Facebook, Twitter, etc, but nothing for Reddit.  Despite not using the OAuth, it was a learning experience for when I do eventually need it. 
+
+So basically, I made use of /everything/ we learned in class and most time was spent on research. 
 
 <h2>Resources</h2>
 Live
